@@ -17,6 +17,10 @@ import java.util.List;
  */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
+    /**
+     * @Autowrie注解描述属性时,注入规则时怎样的?
+     * spring框架会依据@Au
+     */
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     /**
@@ -42,6 +46,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
                         "ROLE_admin,ROLE_normal,sys:res:retrieve,sys:res:create");
 
         User user=new User(username,encodedPwd,grantedAuthorities);
-        return user;
+        return user;//这里的返回值会交给springsecurity去校验
     }
 }
