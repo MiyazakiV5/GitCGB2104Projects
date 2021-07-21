@@ -1,4 +1,5 @@
 package com.cy.jt.security.config;
+import com.cy.jt.security.config.handler.DefaultAccessDeniedExceptionHandler;
 import com.cy.jt.security.config.handler.DefaultAuthenticationFailureHandler;
 import com.cy.jt.security.config.handler.DefaultAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
@@ -43,7 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         //.failureUrl("/login.html?error");//登陆失败(默认)
                         //.successHandler(new DefaultAuthenticationSuccessHandler())
                         //.failureHandler(new DefaultAuthenticationFailureHandler());
+        //推出操作
         http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.html?logout");
+        //设置需要认证与拒绝访问的异常处理器
+        http.exceptionHandling()
+                .accessDeniedHandler(
+                new DefaultAccessDeniedExceptionHandler());
         //3.放行登录url(不需要验证就可以访问)
         http.authorizeRequests()
                 .antMatchers("/login.html","/images/**")//这里写你要放行的资源
