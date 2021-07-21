@@ -15,4 +15,5 @@ public class PageController {
         //spring mvc 中的重定向
         return "redirect:/index.html";
     }
+
 }
