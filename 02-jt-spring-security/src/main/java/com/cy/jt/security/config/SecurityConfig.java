@@ -1,5 +1,6 @@
 package com.cy.jt.security.config;
 import com.cy.jt.security.config.handler.DefaultAccessDeniedExceptionHandler;
+import com.cy.jt.security.config.handler.DefaultAuthenticationEntryPoint;
 import com.cy.jt.security.config.handler.DefaultAuthenticationFailureHandler;
 import com.cy.jt.security.config.handler.DefaultAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.html?logout");
         //设置需要认证与拒绝访问的异常处理器
         http.exceptionHandling()
+                .authenticationEntryPoint(
+                new DefaultAuthenticationEntryPoint())
                 .accessDeniedHandler(
                 new DefaultAccessDeniedExceptionHandler());
         //3.放行登录url(不需要验证就可以访问)
